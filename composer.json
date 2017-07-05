@@ -1,0 +1,13 @@
+{
+    "name": "oaattia/contact-form",
+    "authors": [
+        {
+            "name": "Osama Ahmed",
+            "email": "oaattia@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^3.4"
+    }
+}
