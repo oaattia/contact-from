@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Form</title>
+    <link rel="stylesheet" type="text/css" href="/css/bulma.css">
+</head>
+<body>
+<section class="hero is-fullheight is-dark is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-4 is-offset-4">
+                    <h1 class="title has-text-centered">Contact Us</h1>
+                    <form action="/send" method="post">
+                        <?php if(isset($violationsArray)): ?>
+                            <div class="box">
+                                <?php
+                                    foreach ($violationsArray as $violations) {
+                                        if (0 !== count($violations)) {
+                                            foreach ($violations as $violation) {
+                                                echo $violation->getMessage().'<br>';
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="box">
+
+                            <label class="label">Name</label>
+                            <p class="control">
+                                <input class="input" name="name" type="text" placeholder="Name">
+                            </p>
+
+                            <label class="label">Email</label>
+                            <p class="control">
+                                <input class="input" name="email" type="text" placeholder="foo@example.org">
+                            </p>
+
+                            <label class="label">Message</label>
+                            <p class="control">
+                                <textarea name="message" class="textarea"
+                                          placeholder="Write here your message"></textarea>
+                            </p>
+
+                            <br>
+                            <p class="control">
+                                <button class="button is-primary" type="submit">Send</button>
+                            </p>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

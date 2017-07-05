@@ -1,0 +1,17 @@
+{
+  "name": "contact-form",
+  "version": "1.0.0",
+  "description": "```bash  composer install ``` ###Requirements:  - php7.0 or higher - Mysql 5.7 or higher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bulma": "^0.4.2",
+    "gulp": "^3.9.1",
+    "gulp-csso": "^3.0.0",
+    "gulp-sass": "^3.1.0"
+  }
+}

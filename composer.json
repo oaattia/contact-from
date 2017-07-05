@@ -1,21 +1,27 @@
 {
-    "name": "oaattia/contact-form",
-    "authors": [
-        {
-            "name": "Osama Ahmed",
-            "email": "oaattia@gmail.com"
-        }
-    ],
-    "require": {
-      "php" : "~7.0",
-      "slim/slim": "^3.8"
-    },
-    "require-dev": {
-        "phpspec/phpspec": "^3.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "Oaattia\\ContactForm\\": "src/"
-        }
+  "name": "oaattia/contact-form",
+  "authors": [
+    {
+      "name": "Osama Ahmed",
+      "email": "oaattia@gmail.com"
     }
+  ],
+  "require": {
+    "php": "~7.0",
+    "slim/slim": "^3.8",
+    "slim/php-view": "^2.2",
+    "symfony/validator": "^3.3",
+    "vlucas/phpdotenv": "^2.4",
+    "mailgun/mailgun-php": "^2.3",
+    "php-http/curl-client": "^1.7",
+    "guzzlehttp/psr7": "^1.4"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Oaattia\\ContactForm\\": "src/"
+    }
+  }
 }
