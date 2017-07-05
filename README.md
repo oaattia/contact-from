@@ -4,6 +4,8 @@
  composer install
 ```
 ###Requirements: 
+- php7.0 or higher
+- Mysql 5.7 or higher
 
 ###Description: 
 The project contain the following structure
