@@ -2,9 +2,8 @@
 
 namespace Oaattia\ContactForm\Routes;
 
+use Oaattia\ContactForm\Controller\ContactFormController;
 use Slim\App;
-use Slim\Http\Request;
-use Slim\Http\Response;
 
 class Web implements RoutesInterface
 {
@@ -16,25 +15,15 @@ class Web implements RoutesInterface
      */
     public function routes(App $app) : App
     {
-        // homepage route
         $app->get(
             '/',
-            function (Request $request, Response $response) {
-                return $this->view->render($response, 'form.phtml');
-            }
-        )->setName("homepage");
+            ContactFormController::class.':getHome'
+        )->setName('homepage');
 
         $app->post(
             '/send',
-            function (Request $request, Response $response) {
-                $violationsArray = $this->contactFormValidator->handle();
-
-                $url = $this->router->pathFor('homepage', ['violationsArray' => $violationsArray]);
-
-                return $response->withStatus(302)->withHeader('Location', $url);
-            }
-        );
-
+            ContactFormController::class.':postContact'
+        )->setName('process-contact');
 
         return $app;
     }

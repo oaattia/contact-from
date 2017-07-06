@@ -5,7 +5,7 @@ namespace Oaattia\ContactForm\Services\Mail;
 use Interop\Container\ContainerInterface;
 use Mailgun\Mailgun;
 
-class MailGunSender implements Mail
+class MailGunSender implements MailSender
 {
     /**
      * @var ContainerInterface
@@ -24,14 +24,29 @@ class MailGunSender implements Mail
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->mailGun = Mailgun::create($this->container->settings->mailGunApi);
+        $this->mailGun = Mailgun::create($this->container->settings['mailGunApi']);
     }
 
-    public function send()
+    /**
+     * @param string $from
+     * @param string $to
+     * @param string $subject
+     * @param string $message
+     * @return \Mailgun\Model\Message\SendResponse
+     */
+    public function send($from, $to, $subject, $message)
     {
+        $parameters = [
+            'from'    => $from,
+            'to'      => $to,
+            'subject' => $subject,
+            'text'    => $message
+        ];
 
-        $this->mailGun->send();
-
+        return $this
+            ->mailGun
+            ->messages()
+            ->send($this->container->settings['domainName'], $parameters);
     }
 
 
