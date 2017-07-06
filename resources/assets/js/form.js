@@ -1,5 +1,5 @@
 import $ from 'jQuery';
-// import Parsley from 'parsleyjs';
+import swal from 'sweetalert2'
 
 
 $(document).ready(() => {
@@ -15,9 +15,25 @@ $(document).ready(() => {
             },
             response => {
                 $(e.target).removeClass('is-loading');
-                console.log(response);
+                console.log(response.status);
             }
-        );
+        ).fail(response => {
+            let errors = response.responseJSON;
+            let block = "<ul class='has-text-centered'>";
+            for( let error of errors ) {
+                block += "<li>" + error + "</li>";
+            }
+            block += "</ul>";
+            swal({
+                title: 'Error!',
+                html: block,
+                type: 'error',
+                confirmButtonText: 'Cool',
+                onClose: () => {
+                    $(e.target).removeClass('is-loading');
+                }
+            })
+        });
 
     });
 

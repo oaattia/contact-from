@@ -33,14 +33,25 @@ class ContactFormController
     }
 
 
+    /**
+     * Process the form
+     *
+     * @param $request
+     * @param $response
+     * @return mixed
+     */
     public function postContact($request, $response)
     {
-        if(!$request->isXhr()) {
+        if (!$request->isXhr()) {
             return $response->withStatus(302)->withHeader('Location', '/');
         }
 
         $violationsArray = $this->container->contactFormValidator->handle($request->getParsedBody());
-var_dump($violationsArray);die();
+
+        if (!empty($violationsArray)) {
+            return $response->withJson($violationsArray, 400);
+        }
+
 //        $this->container->mailSender->send(
 //            'oaattia@live.com',
 //            getenv("CONTACT_EMAIL"),
@@ -48,7 +59,6 @@ var_dump($violationsArray);die();
 //            'some cool message'
 //        );
 
-        $url = $this->container->router->pathFor('homepage', ['violationsArray' => $violationsArray]);
 
         return $response->withStatus(302)->withHeader('Location', $url);
     }
