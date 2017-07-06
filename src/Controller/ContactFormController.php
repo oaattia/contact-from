@@ -52,14 +52,13 @@ class ContactFormController
             return $response->withJson($violationsArray, 400);
         }
 
-//        $this->container->mailSender->send(
-//            'oaattia@live.com',
-//            getenv("CONTACT_EMAIL"),
-//            'subject important',
-//            'some cool message'
-//        );
+        $this->container->mailSender->send(
+            $request->getParam('form')[1]['value'],
+            getenv("CONTACT_EMAIL"),
+            $request->getParam('form')[0]['value'],
+            $request->getParam('form')[2]['value']
+        );
 
 
-        return $response->withStatus(302)->withHeader('Location', $url);
     }
 }

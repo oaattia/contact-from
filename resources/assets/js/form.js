@@ -15,7 +15,14 @@ $(document).ready(() => {
             },
             response => {
                 $(e.target).removeClass('is-loading');
-                console.log(response.status);
+                swal({
+                    title: 'Got that, you are awesome!!',
+                    type: 'success',
+                    confirmButtonText: 'Cool',
+                    onClose: () => {
+                        $(e.target).removeClass('is-loading');  // done
+                    }
+                })
             }
         ).fail(response => {
             let errors = response.responseJSON;
@@ -28,7 +35,7 @@ $(document).ready(() => {
                 title: 'Error!',
                 html: block,
                 type: 'error',
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'Okaaaay',
                 onClose: () => {
                     $(e.target).removeClass('is-loading');
                 }
