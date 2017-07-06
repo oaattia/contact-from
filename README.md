@@ -3,6 +3,8 @@
  ```bash
  composer install
 ```
+
+also don't forget to add the `.env` file data 
 ###Requirements: 
 - php7.0 or higher
 - Mysql 5.7 or higher

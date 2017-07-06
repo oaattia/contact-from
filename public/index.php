@@ -14,16 +14,12 @@ require "../vendor/autoload.php";
 $dotenv = new Dotenv(realpath('..'));
 $dotenv->load();
 
-if (getenv('DEBUG')) {
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-}
-
 $app = new \Slim\App(
     [
         'settings' => [
             'mailGunApi' => getenv('MAILGUN_API'),
             'domainName' => getenv('DOMAINNAME'),
+            'displayErrorDetails' => getenv('DEBUG') ?? false
         ],
         'view' => new PhpRenderer("../resources/views"),
         'contactFormValidator' => function (ContainerInterface $container) {

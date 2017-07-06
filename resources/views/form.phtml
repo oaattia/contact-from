@@ -14,22 +14,8 @@
             <div class="columns is-vcentered">
                 <div class="column is-4 is-offset-4">
                     <h1 class="title has-text-centered">Contact Us</h1>
-                    <form action="/send" method="post">
-                        <?php if(isset($violationsArray)): ?>
-                            <div class="box">
-                                <?php
-                                    foreach ($violationsArray as $violations) {
-                                        if (0 !== count($violations)) {
-                                            foreach ($violations as $violation) {
-                                                echo $violation->getMessage().'<br>';
-                                            }
-                                        }
-                                    }
-                                ?>
-                            </div>
-                        <?php endif; ?>
+                    <form action="/send" method="post" id="form">
                         <div class="box">
-
                             <label class="label">Name</label>
                             <p class="control">
                                 <input class="input" name="name" type="text" placeholder="Name">
@@ -37,7 +23,7 @@
 
                             <label class="label">Email</label>
                             <p class="control">
-                                <input class="input" name="email" type="text" placeholder="foo@example.org">
+                                <input class="input" name="email" type="text" placeholder="foo@example.zew">
                             </p>
 
                             <label class="label">Message</label>
@@ -50,16 +36,14 @@
                             <p class="control">
                                 <button class="button is-primary" type="submit">Send</button>
                             </p>
-
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 
 </section>
+<script src="js/form.js"></script>
 </body>
 </html>

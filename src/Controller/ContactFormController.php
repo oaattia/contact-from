@@ -35,13 +35,21 @@ class ContactFormController
 
     public function postContact($request, $response)
     {
-        $violationsArray = $this->container->contactFormValidator->handle();
+        if(!$request->isXhr()) {
+            return $response->withStatus(302)->withHeader('Location', '/');
+        }
 
-        $this->container->mailSender->send();
-//        var_dump($violationsArray);die();
+        $violationsArray = $this->container->contactFormValidator->handle($request->getParsedBody());
+var_dump($violationsArray);die();
+//        $this->container->mailSender->send(
+//            'oaattia@live.com',
+//            getenv("CONTACT_EMAIL"),
+//            'subject important',
+//            'some cool message'
+//        );
 
-//        $url = $this->router->pathFor('homepage', ['violationsArray' => $violationsArray]);
+        $url = $this->container->router->pathFor('homepage', ['violationsArray' => $violationsArray]);
 
-//        return $response->withStatus(302)->withHeader('Location', $url);
+        return $response->withStatus(302)->withHeader('Location', $url);
     }
 }

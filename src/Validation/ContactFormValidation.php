@@ -3,72 +3,29 @@
 
 namespace Oaattia\ContactForm\Validation;
 
-
-use Interop\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-/**
- * Class ContactFormValidation
- * @package Oaattia\ContactForm\Validation
- */
-class ContactFormValidation
+class ContactFormValidation extends AbstractValidator
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
 
     /**
-     * ContactFormValidation constructor.
-     * @param ContainerInterface $container
-     * @param ValidatorInterface $validator
-     */
-    public function __construct(ContainerInterface $container, ValidatorInterface $validator)
-    {
-        $this->container = $container;
-        $this->validator = $validator;
-    }
-
-    /**
-     * @return array
+     * @inheritdoc
      */
     public function rules()
     {
         return [
             'name' => [
-                new NotBlank(),
+                new NotBlank(["message" => "Name is missing."]),
             ],
             'email' => [
-                new Email(),
-                new NotBlank(),
+                new Email(["message" => "Invalid email address."]),
+                new NotBlank(["message" => "Email address is missing."]),
             ],
             'message' => [
-                new NotBlank(),
+                new NotBlank(["message" => "Message shouldn't be blank."]),
             ],
         ];
-    }
-
-    /**
-     * @return array
-     */
-    public function handle()
-    {
-
-        $violationsArray = [];
-
-        foreach ($this->rules() as $key => $constraints) {
-            $item = $this->container->request->getParsedBodyParam($key);
-            $violationsArray[] = $this->validator->validate($item, $constraints);
-        }
-
-        return $violationsArray;
-
     }
 
 }

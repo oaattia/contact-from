@@ -1,0 +1,28 @@
+import gulp from "gulp";
+import browserify from "browserify";
+import babelify from 'babelify';
+import source from "vinyl-source-stream";
+import buffer from "vinyl-buffer";
+import uglify from "gulp-uglify";
+import watchify from "watchify";
+
+
+gulp.task('javascript', () => {
+    watchify(browserify({
+        entries: 'resources/assets/js/form.js',
+        debug: true
+    }))
+    .transform(babelify)
+    .bundle()
+    .pipe(source('form.js'))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('default', ['watch']);
+
+gulp.task('watch', () => {
+    gulp.watch('resources/assets/js/form.js', ['javascript'])
+});
+
