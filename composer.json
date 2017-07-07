@@ -19,11 +19,17 @@
     "doctrine/migrations": "^1.5"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.2"
+    "phpunit/phpunit": "^6.2",
+    "mockery/mockery": "^0.9.9"
   },
   "autoload": {
     "psr-4": {
       "Oaattia\\ContactForm\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Oaattia\\ContactForm\\": "tests"
     }
   }
 }

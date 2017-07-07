@@ -46,7 +46,7 @@ class ContactFormController
             return $response->withStatus(302)->withHeader('Location', '/');
         }
 
-        $violationsArray = $this->container->contactFormValidator->handle($request->getParsedBody());
+        $violationsArray = $this->container->get('contactFormValidator')->handle($request->getParsedBody());
 
         if (!empty($violationsArray)) {
             return $response->withJson($violationsArray, 400);
