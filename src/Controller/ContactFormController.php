@@ -29,6 +29,7 @@ class ContactFormController
      */
     public function getHome($request, $response)
     {
+        var_dump($this->container->database->findAll());die();
         return $this->container->view->render($response, 'form.phtml');
     }
 
@@ -52,12 +53,14 @@ class ContactFormController
             return $response->withJson($violationsArray, 400);
         }
 
-        $this->container->mailSender->send(
-            $request->getParam('form')[1]['value'],
-            getenv("CONTACT_EMAIL"),
-            $request->getParam('form')[0]['value'],
-            $request->getParam('form')[2]['value']
-        );
+//        $this->container->mailSender->send(
+//            $request->getParam('form')[1]['value'],
+//            getenv("CONTACT_EMAIL"),
+//            $request->getParam('form')[0]['value'],
+//            $request->getParam('form')[2]['value']
+//        );
+
+
 
 
     }
