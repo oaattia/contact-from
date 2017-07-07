@@ -1,15 +1,17 @@
 # Create a contact form 
-###Installation:
+This is a contact form that help the user to send his question, it's uses mailGun for sending emails also saving the data to our database .
+
+### Installation:
  ```bash
  composer install
 ```
 
 also don't forget to add the `.env` file data 
-###Requirements: 
+### Requirements: 
 - php7.0 or higher
 - Mysql 5.7 or higher
 
-###Description: 
+### Description: 
 The project contain the following structure
 - src 
 for the project src files 
@@ -22,4 +24,4 @@ for the public directory and we need to add the root directory in nginx or apach
  root    /path/to/project/public/
  ```
 
-###Tests: 
+### Tests: 
