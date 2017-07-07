@@ -28,10 +28,31 @@ class MySqlDatabaseService
      */
     public function findAll() : array
     {
-        $contacts = $this->container->connection->query("SELECT * FROM contacts");
+        $contacts = $this->container->connection->query("SELECT * FROM visitors");
 
         return $contacts->fetchAll(PDO::FETCH_COLUMN);
     }
 
+
+    /**
+     * Insert to the table
+     *
+     * @param string $name
+     * @param string $email
+     * @param string $message
+     *
+     * @return int $affectedRows
+     */
+    public function insert($name, $email, $message)
+    {
+        return $this->container->connection->insert(
+            'visitors',
+            [
+                'name' => $name,
+                'email' => $email,
+                'message' => $message,
+            ]
+        );
+    }
 
 }

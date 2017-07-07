@@ -16,11 +16,12 @@ $(document).ready(() => {
             response => {
                 $(e.target).removeClass('is-loading');
                 swal({
-                    title: 'Got that, you are awesome!!',
+                    title: 'You are awesome!!',
                     type: 'success',
                     confirmButtonText: 'Cool',
                     onClose: () => {
-                        $(e.target).removeClass('is-loading');  // done
+                        $(e.target).removeClass('is-loading');
+                        $('input', 'textarea').val('');
                     }
                 })
             }
